@@ -16,9 +16,11 @@
 
 div.header {
   text-align: center;
-  font-family: 'Playfair Display', serif;
 }
 
 h1.title {
+  font-family: 'Playfair Display', serif;
   font-size: 5em;
+  margin-top: 0.6em;
+  margin-bottom: 0.4em;
 }
