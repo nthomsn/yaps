@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+div.header {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+h1.title {
+  font-size: 5em;
+}
