@@ -1,4 +1,5 @@
 # YAPS
+Simple degree scheduling
 
 ## Installation with vagrant
 Get [vagrant](https://www.vagrantup.com/)
