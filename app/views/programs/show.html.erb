@@ -1,0 +1,9 @@
+
+<div class="container">
+  <div class="header">
+    <h1><%= @program.name %></h1>
+  </div>
+  <% @courses.each do |course| %>
+    <div><%= course.name %></div>
+  <% end %>
+</div>

@@ -22,7 +22,9 @@
   </div>
   <div class="main-content">
     <% @programs.each do |program| %>
-      <div class="program-link"><%= program.name %></div>
+      <%= link_to program do %>
+        <div class="program-link"><%= program.name %></div>
+      <% end %>
     <% end %>
   </div>
 </div>
