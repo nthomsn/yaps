@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+html * {
+  font-family: 'Roboto', Arial, sans-serif;
+}
 
 div.header {
   text-align: center;
@@ -41,4 +44,15 @@ div.program-link {
 div.program-link:hover {
   background-color: #ed1c2f;
   color: white;
+}
+
+h1.program-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 4em;
+  margin-top: 0.3em;
+  margin-bottom: 0.7em;
+}
+
+div.course {
+  line-height: 1.7em;
 }

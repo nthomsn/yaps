@@ -1,9 +1,10 @@
 
 <div class="container">
   <div class="header">
-    <h1><%= @program.name %></h1>
+    <h1 class="program-title"><%= @program.name %></h1>
   </div>
-  <% @courses.each do |course| %>
-    <div><%= course.name %></div>
+  <h1>Required Courses</h1>
+  <% @course_names.each do |course| %>
+    <div class="course"><%= course %>, <%= @course_count[course] %></div>
   <% end %>
 </div>
