@@ -16,8 +16,10 @@ end
 def parse_file(location)
     file = File.open(location, 'r')
 
-    name = file.first.strip
-    program = Program.new(:name => name)
+    firstline = file.first
+    name = firstline.split(",").first.strip
+    catalog_id = firstline.split(",")[1].strip.to_i
+    program = Program.new(:name => name, :catalog_id => catalog_id)
     program.save
     puts "Found %s" % name
 

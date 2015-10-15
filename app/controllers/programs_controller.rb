@@ -3,5 +3,6 @@ class ProgramsController < ApplicationController
     @program = Program.find(params[:id])
     @course_count = @program.unique_course_count
     @course_names = @course_count.keys
+    @rpi_url = @program.rpi_url
   end
 end
