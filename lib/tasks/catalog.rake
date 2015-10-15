@@ -1,13 +1,13 @@
-CATALOG_LOCATION = './catalog/'
+CATALOG_DIRECTORY = './catalog/'
 
 desc 'Update the catalog database from the catalog directory'
 task :update_catalog => :environment do
   Program.delete_all
   Course.delete_all
 
-  Dir.entries(CATALOG_LOCATION).each do |filename|
-    if File.file?(CATALOG_LOCATION+filename)
-      parse_file(CATALOG_LOCATION+filename)
+  Dir.entries(CATALOG_DIRECTORY).each do |filename|
+    if File.file?(CATALOG_DIRECTORY+filename)
+      parse_file(CATALOG_DIRECTORY+filename)
     end
   end
   puts "Done adding programs to the database."
