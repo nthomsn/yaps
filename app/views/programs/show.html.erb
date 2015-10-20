@@ -5,7 +5,11 @@
   </div>
   <h1>Required Courses</h1>
   <% @course_names.each do |course| %>
-    <div class="course"><%= course %>, <%= @course_count[course] %></div>
+    <div class="course"><%= course %>
+    <% if @course_count[course] > 1 %>
+      x<%= @course_count[course] %>
+    <% end %>
+    </div>
   <% end %>
   <div class="footer">
     <a href="<%= @rpi_url %>">View in RPI Catalog</a>
