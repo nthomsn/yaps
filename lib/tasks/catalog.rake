@@ -24,8 +24,13 @@ def parse_file(location)
     puts "Found %s" % name
 
     line_count = 0
+    parsing_requirements = false
+    requirements = ''
     file.each_line do |line|
-      if line_count > 0
+      # Check for break indicating start of requirements
+      if (line.include?('#'))
+        parsing_requirements = true;
+      elsif line_count > 0 && !parsing_requirements
         paren_index = line.index('(')
         name = line[0..paren_index-1].strip
         credits = line[paren_index+1..paren_index+2].to_i
@@ -34,8 +39,13 @@ def parse_file(location)
         else
           program.courses.create(:name => name, :credits => credits)
         end
+      elsif parsing_requirements
+        requirements += line
       end
       line_count += 1
     end
+
+    program[:requirements_text] = requirements
+    program.save
 
 end

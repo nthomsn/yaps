@@ -11,6 +11,10 @@
     <% end %>
     </div>
   <% end %>
+  <% if @requirements != '' %>
+    <h1>Notes</h1>
+    <%= @requirements %>
+  <% end %>
   <div class="footer">
     <a href="<%= @rpi_url %>">View in RPI Catalog</a>
   </div>
