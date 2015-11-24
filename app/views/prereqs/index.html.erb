@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<form id="validator" action="javascript:validate()">
+<button>Validate Schedule</button>
+<div id="semtable">
+    <div class="box dash">
+        <button onclick="new_div()" type="button">Add</button>
+    </div>
+</div>
+</form>
+<script>
+
+function new_row(source) {
+    var thisdiv = source.parentNode;
+    var new_row = thisdiv.children[0].cloneNode(true);
+    new_row.value = "";
+    new_row.title = "";
+    new_row.style.backgroundColor = "";
+    thisdiv.insertBefore(new_row,source);
+}
+
+function new_div() {
+    var semtable = document.getElementById("semtable");
+
+    //create element to add:
+    var div = document.createElement('div');
+    div.className = "box";
+    var input = document.createElement('input');
+    input.type="text";
+    input.name="courses["+(semtable.childElementCount-1).toString()+"][]";
+    input.className = "autoc";
+    div.appendChild(input);
+    div.appendChild(input.cloneNode(true));
+    var button = document.createElement('button');
+    button.innerHTML="Add new row";
+    button.type="button";
+    div.appendChild(button);
+    button.onclick= function() { new_row(this); };
+
+    var last = semtable.lastElementChild;
+    semtable.insertBefore(div, last);
+}
+
+$("#validator").submit(function(e) {
+    var url = "/prereqs/create"; // the script where you handle the form input.
+    $.ajax({
+           type: "POST",
+           dataType: "json",
+           beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+           url: url,
+           data: $("#validator").serialize(), // serializes the form's elements.
+            error: function(data,a,b) {
+                console.log(data);
+                console.log(a);
+                console.log(b);
+},
+            success: function(data) {
+                var root = document.getElementById("semtable");
+                for(var i = 0; i < data.length; i++) {
+                    var box = root.children[i];
+                    for(var j = 0; j < data[i].length; j++) {
+                        var elem = box.children[j];
+                        if(data[i][j]) {
+                            elem.style.backgroundColor = "red";
+                            elem.title = data[i][j];
+                        }
+                        else {
+                            elem.style.backgroundColor = "";
+                            elem.title = "";
+                        }
+                    }
+                }
+               console.log(data);
+           }
+         });
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+/*
+$('.autoc').on("focus", function() {$(this).autocomplete({
+    minLength: 2,
+    source: function(request, response) {
+        var url = "/prereqs/autoc"; // the script where you handle the form input.
+        $.ajax({
+           type: "POST",
+           dataType: "json",
+           beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+           url: url,
+           data: $("#validator").serialize(), // serializes the form's elements.
+            success: function(data) {
+                response = data;
+            }
+
+            });
+        }})});
+*/
+for(var i = 0; i < 8; i++) {
+    new_div();
+}
+
+</script>
+</body>
+</html>

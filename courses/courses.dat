@@ -1,0 +1,11 @@
+[
+    { "name": "Intro to Computer Science", "idstring": "CSCI1100" },
+    { "name": "Data Structures", "idstring": "CSCI1200", "prereq_string": "CSCI1100" },
+    { "name": "Foundations of Computer Science", "idstring": "CSCI2200", "prereq_string": "CSCI1200&MATH1010|CSCI1200&MATH1500" },
+    { "name": "Introduction to Algorithms", "idstring": "CSCI2300", "prereq_string": "CSCI1200&MATH1010&CSCI2200" },
+    { "name": "Calc I", "idstring": "MATH1010" },
+    { "name": "Calc II", "idstring": "MATH1020" },
+    { "name": "Introduction to Biology", "idstring": "BIOL1010" },
+    { "name": "Computer Organization", "idstring": "CSCI2500", "prereq_string": "CSCI1200" },
+    { "name": "Operating Systems", "idstring": "CSCI4210", "prereq_string": "CSCI2300&CSCI2500" }
+]
